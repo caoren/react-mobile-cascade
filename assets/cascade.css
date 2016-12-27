@@ -1,0 +1,151 @@
+.c-cascade-mask {
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 100;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.c-cascade-select {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 297px;
+  overflow: hidden;
+  box-sizing: border-box;
+  z-index: 101;
+  background-color: #fff;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+}
+.c-cascade-opa {
+  padding: 0 10px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+  font-size: 16px;
+  color: #108ee9;
+  border-bottom: 1px #ddd solid;
+}
+.c-cascade-bton {
+  width: 60px;
+  height: 26px;
+  line-height: 26px;
+  padding: 10px 0;
+}
+.c-cascade-bton:last-child {
+  text-align: right;
+}
+.c-cascade-title {
+  color: #1B1C20;
+}
+.c-cascade-cont {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  flex: 1;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  padding: 6px 0;
+  height: 238px;
+  overflow: hidden;
+}
+.c-cascade-wrap {
+  text-align: center;
+}
+.c-cascade-shade {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 1;
+  background-position-x: center, center;
+  background-position-y: top, bottom;
+  background-repeat: no-repeat;
+  background-image: -webkit-linear-gradient(top, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.6)), -webkit-linear-gradient(bottom, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.6));
+  background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.6)), linear-gradient(0deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.6));
+  background-size: 100% 102px;
+}
+.c-cascade-indicator {
+  border: #d0d0d0 solid;
+  border-width: 1px 0;
+  position: absolute;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 34px;
+  top: 102px;
+  box-sizing: border-box;
+  z-index: 2;
+}
+.c-cascade-ul {
+  font-size: 16px;
+}
+.c-cascade-ul > li {
+  height: 34px;
+  line-height: 34px;
+  color: #1B1C20;
+}
+.cascademask-enter {
+  opacity: 0.1;
+}
+.cascademask-enter.cascademask-enter-active {
+  opacity: 1;
+  -webkit-transition: opacity 300ms ease-in-out;
+  transition: opacity 300ms ease-in-out;
+}
+.cascademask-leave {
+  opacity: 1;
+}
+.cascademask-leave.cascademask-leave-active {
+  opacity: 0.1;
+  -webkit-transition: opacity 300ms ease-in-out;
+  transition: opacity 300ms ease-in-out;
+}
+.cascadecont-enter {
+  -webkit-transform: translate3d(0, 100%, 0);
+  transform: translate3d(0, 100%, 0);
+}
+.cascadecont-enter.cascadecont-enter-active {
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  -webkit-transition: -webkit-transform 300ms ease-in-out;
+  transition: -webkit-transform 300ms ease-in-out;
+  transition: transform 300ms ease-in-out;
+  transition: transform 300ms ease-in-out, -webkit-transform 300ms ease-in-out;
+}
+.cascadecont-leave {
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+}
+.cascadecont-leave.cascadecont-leave-active {
+  -webkit-transform: translate3d(0, 100%, 0);
+  transform: translate3d(0, 100%, 0);
+  -webkit-transition: -webkit-transform 300ms ease-in-out;
+  transition: -webkit-transform 300ms ease-in-out;
+  transition: transform 300ms ease-in-out;
+  transition: transform 300ms ease-in-out, -webkit-transform 300ms ease-in-out;
+}
+.hairline .c-cascade-opa {
+  border-bottom-width: 0.5px;
+}
+.hairline .c-cascade-indicator {
+  border-width: 0.5px 0;
+}
