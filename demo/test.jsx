@@ -111,7 +111,6 @@ class Test extends Component{
         });
     }
     componentWillMount(){
-        //retina 0.5px
         if(window.devicePixelRatio && devicePixelRatio >= 2){
             var testElem = document.createElement('div');
             testElem.style.border = '0.5px solid transparent';
