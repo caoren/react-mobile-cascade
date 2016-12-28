@@ -59,7 +59,7 @@ Type: `string`
 #### scrollChildKey
 Type: `string`
 
-展示数据子级的Key，默认为"children".
+数据子级的Key，默认为"children".
 
 #### scrollCheckedKey
 Type: `string`
