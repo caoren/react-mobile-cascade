@@ -110,6 +110,18 @@ class Test extends Component{
             text : result
         });
     }
+    componentWillMount(){
+        //retina 0.5px
+        if(window.devicePixelRatio && devicePixelRatio >= 2){
+            var testElem = document.createElement('div');
+            testElem.style.border = '0.5px solid transparent';
+            document.body.appendChild(testElem);
+            if(testElem.offsetHeight == 1){
+                document.querySelector('html').classList.add('hairline');
+            }
+            document.body.removeChild(testElem);
+        }
+    }
     render(){
         let {list,text} = this.state;
         return(
