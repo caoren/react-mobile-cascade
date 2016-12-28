@@ -1,8 +1,32 @@
 import "../assets/cascade.css";
-import "core-js/fn/array/find-index.js";
 import React,{PropTypes,Component} from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import SelectScroll from './scroll';
+//polyfill
+if(typeof Array.prototype.findIndex === 'undefined'){
+    Object.defineProperty(Array.prototype,'findIndex',{
+        value : function(callback){
+            if(this == null) {
+                throw new TypeError('Array.prototype.findIndex called on null or undefined');
+            }
+            if(typeof callback !== 'function') {
+                throw new TypeError('callback must be a function');
+            }
+            let list = this;
+            let len = list.length;
+            let thisArg = arguments[1];
+            for(let i = 0;i < len;i++){
+                if(callback.call(thisArg,list[i],i,list)){
+                    return i;
+                }
+            }
+            return -1;
+        },
+        enumerable : false,
+        configurable : false,
+        writable : false
+    });
+}
 const IscrollOption = {
     startX : 0,
     startY : 0

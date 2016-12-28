@@ -21,8 +21,7 @@ var config = {
             loader: 'babel',
             query: {
                 presets: ['react', 'es2015']
-            },
-            plugins: ["transform-runtime"]
+            }
         },
         {
             test: /\.(css|less)$/,

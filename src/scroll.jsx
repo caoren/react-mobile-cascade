@@ -2,6 +2,24 @@ import React,{PropTypes,Component} from 'react';
 import iScroll from 'iscroll/build/iscroll-lite';
 import ReactIScroll from 'react-iscroll';
 import SelectItem from './item';
+//extend
+function extend(target){
+    if(typeof target !== 'object'){
+        throw new TypeError('Cannot convert undefined or null to object');
+    }
+    let len = arguments.length;
+    for(let index = 1;index < len;index++){
+        let source = arguments[index];
+        if(source != null){
+            for(let key in source){
+                if(Object.prototype.hasOwnProperty.call(source,key)){
+                    target[key] = source[key];
+                }
+            }
+        }
+    }
+    return target;
+}
 const ITEMHEIGHT = 34;
 const HALFITEMHEIGHT = Math.round(ITEMHEIGHT/2);
 class SelectScroll extends React.Component{
@@ -32,7 +50,7 @@ class SelectScroll extends React.Component{
     }
     render(){
         let {data,index,options,selectedIndex,textKey} = this.props;
-        let coptions = Object.assign({},options);
+        let coptions = extend({},options);
         if(this.isFirst){
             coptions.startY = -(selectedIndex) * ITEMHEIGHT;
             delete this.isFirst;
