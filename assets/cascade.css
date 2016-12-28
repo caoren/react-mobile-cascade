@@ -79,6 +79,8 @@
   background-repeat: no-repeat;
   background-image: -webkit-linear-gradient(top, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.5));
   background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.5));
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
 }
 .c-cascade-shade:after {
   content: " ";
@@ -90,6 +92,8 @@
   background-repeat: no-repeat;
   background-image: -webkit-linear-gradient(bottom, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.5));
   background-image: linear-gradient(to top, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.5));
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
 }
 .c-cascade-indicator {
   border: #d0d0d0 solid;
@@ -116,16 +120,16 @@
 }
 .cascademask-enter.cascademask-enter-active {
   opacity: 1;
-  -webkit-transition: opacity 300ms ease-in-out;
-  transition: opacity 300ms ease-in-out;
+  -webkit-transition: opacity 300ms ease-out;
+  transition: opacity 300ms ease-out;
 }
 .cascademask-leave {
   opacity: 1;
 }
 .cascademask-leave.cascademask-leave-active {
   opacity: 0.1;
-  -webkit-transition: opacity 300ms ease-in-out;
-  transition: opacity 300ms ease-in-out;
+  -webkit-transition: opacity 300ms ease-out;
+  transition: opacity 300ms ease-out;
 }
 .cascadecont-enter {
   -webkit-transform: translate3d(0, 100%, 0);
@@ -134,10 +138,10 @@
 .cascadecont-enter.cascadecont-enter-active {
   -webkit-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
-  -webkit-transition: -webkit-transform 300ms ease-in-out;
-  transition: -webkit-transform 300ms ease-in-out;
-  transition: transform 300ms ease-in-out;
-  transition: transform 300ms ease-in-out, -webkit-transform 300ms ease-in-out;
+  -webkit-transition: -webkit-transform 300ms ease-out;
+  transition: -webkit-transform 300ms ease-out;
+  transition: transform 300ms ease-out;
+  transition: transform 300ms ease-out, -webkit-transform 300ms ease-out;
 }
 .cascadecont-leave {
   -webkit-transform: translate3d(0, 0, 0);
@@ -146,10 +150,10 @@
 .cascadecont-leave.cascadecont-leave-active {
   -webkit-transform: translate3d(0, 100%, 0);
   transform: translate3d(0, 100%, 0);
-  -webkit-transition: -webkit-transform 300ms ease-in-out;
-  transition: -webkit-transform 300ms ease-in-out;
-  transition: transform 300ms ease-in-out;
-  transition: transform 300ms ease-in-out, -webkit-transform 300ms ease-in-out;
+  -webkit-transition: -webkit-transform 300ms ease-out;
+  transition: -webkit-transform 300ms ease-out;
+  transition: transform 300ms ease-out;
+  transition: transform 300ms ease-out, -webkit-transform 300ms ease-out;
 }
 .hairline .c-cascade-opa {
   border-bottom-width: 0.5px;

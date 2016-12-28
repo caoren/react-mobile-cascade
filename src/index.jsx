@@ -1,4 +1,4 @@
-import "../assets/cascade.less";
+import "../assets/cascade.css";
 import React,{PropTypes,Component} from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import SelectScroll from './scroll';
