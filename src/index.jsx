@@ -29,7 +29,10 @@ if(typeof Array.prototype.findIndex === 'undefined'){
 }
 const IscrollOption = {
     startX : 0,
-    startY : 0
+    startY : 0,
+    disablePointer : true,
+    disableTouch : false,
+    disableMouse : true
 }
 const EMPTY = ['','',''];
 function analysisData(obj){
