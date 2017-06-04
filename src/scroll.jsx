@@ -1,4 +1,5 @@
-import React,{PropTypes,Component} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import iScroll from 'iscroll/build/iscroll-lite';
 import ReactIScroll from 'react-iscroll';
 import SelectItem from './item';

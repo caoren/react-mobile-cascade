@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import "../assets/cascade.css";
 import Cascade from '../src/index.jsx';
 
 class Test extends Component{

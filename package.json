@@ -1,6 +1,6 @@
 {
   "name": "react-mobile-cascade",
-  "version": "1.0.4",
+  "version": "1.1.0",
   "homepage": "https://github.com/caoren/react-mobile-cascade",
   "keywords": [
     "react",
@@ -32,6 +32,7 @@
     "less-loader": "^2.2.3",
     "postcss-loader": "^1.1.1",
     "precss": "^1.4.0",
+    "prop-types": "^15.5.10",
     "react": "15.0.2",
     "react-addons-css-transition-group": "15.0.2",
     "react-dom": "15.0.2",

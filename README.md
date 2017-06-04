@@ -4,6 +4,7 @@
 
 ## 使用
 ```js
+import "react-mobile-cascade/assets/cascade.css"
 <Cascade column={3} data={...} onDone={this.change}></Cascade>
 ```
 ## 预览
