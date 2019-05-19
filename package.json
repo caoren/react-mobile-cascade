@@ -56,7 +56,7 @@
     "react": ">=15.0.1",
     "react-dom": ">=15.0.1",
     "prop-types": ">= 15.0.1",
-    "react-transition-group": "^2.0.0"
+    "react-transition-group": ">=2.0.0"
   },
   "dependencies": {
     "iscroll": "^5.2.0",
