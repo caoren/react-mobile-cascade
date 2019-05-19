@@ -101,39 +101,54 @@
     }
 }
 //选择时间动画
+//选择时间动画
 .cascademask-enter{
-    opacity:0.1;
+    opacity: 0.1;
 }
-.cascademask-enter.cascademask-enter-active{
-    opacity:1;
+.cascademask-enter-active{
+    opacity: 1;
+    transition: opacity 300ms ease-out;
+}
+.cascademask-appear{
+    opacity: 0.1;
+}
+.cascademask-appear-active{
+    opacity: 1;
     transition:opacity 300ms ease-out;
 }
-.cascademask-leave{
-    opacity:1;
+.cascademask-exit{
+    opacity: 1;
 }
-.cascademask-leave.cascademask-leave-active {
-    opacity:0.1;
-    transition:opacity 300ms ease-out;
+.cascademask-exit-active {
+    opacity: 0.1;
+    transition: opacity 300ms ease-out;
 }
 .cascadecont-enter{
-    transform:translate3d(0,100%,0);
+    transform: translate3d(0, 100%, 0);
 }
-.cascadecont-enter.cascadecont-enter-active{
-    transform:translate3d(0,0,0);
-    transition:transform 300ms ease-out;
+.cascadecont-enter-active{
+    transform: translate3d(0, 0, 0);
+    transition: transform 300ms ease-out;
 }
-.cascadecont-leave{
-    transform:translate3d(0,0,0);
+.cascadecont-appear{
+    transform:translate3d(0, 100%, 0);
 }
-.cascadecont-leave.cascadecont-leave-active {
-    transform:translate3d(0,100%,0);
-    transition:transform 300ms ease-out;
+.cascadecont-appear-active{
+    transform: translate3d(0, 0, 0);
+    transition: transform 300ms ease-out;
+}
+.cascadecont-exit{
+    transform: translate3d(0, 0, 0);
+}
+.cascadecont-exit-active {
+    transform: translate3d(0, 100%, 0);
+    transition: transform 300ms ease-out;
 }
 .hairline{
     .c-cascade-opa{
-        border-bottom-width:0.5px;
+        border-bottom-width: 0.5px;
     }
     .c-cascade-indicator{
-        border-width:0.5px 0;
+        border-width: 0.5px 0;
     }
 }

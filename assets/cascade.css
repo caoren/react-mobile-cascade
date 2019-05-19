@@ -23,7 +23,7 @@
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
   -webkit-flex-direction: column;
-  flex-direction: column;
+          flex-direction: column;
 }
 .c-cascade-opa {
   padding: 0 10px;
@@ -32,10 +32,10 @@
   display: flex;
   -webkit-box-pack: justify;
   -webkit-justify-content: space-between;
-  justify-content: space-between;
+          justify-content: space-between;
   -webkit-box-align: center;
   -webkit-align-items: center;
-  align-items: center;
+          align-items: center;
   font-size: 16px;
   color: #108ee9;
   border-bottom: 1px #ddd solid;
@@ -55,13 +55,13 @@
 .c-cascade-cont {
   -webkit-box-flex: 1;
   -webkit-flex: 1;
-  flex: 1;
+          flex: 1;
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
-  justify-content: center;
+          justify-content: center;
   padding: 6px 0;
   height: 238px;
   overflow: hidden;
@@ -80,7 +80,7 @@
   background-image: -webkit-linear-gradient(top, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.5));
   background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.5));
   -webkit-transform: translateZ(0);
-  transform: translateZ(0);
+          transform: translateZ(0);
 }
 .c-cascade-shade:after {
   content: " ";
@@ -93,7 +93,7 @@
   background-image: -webkit-linear-gradient(bottom, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.5));
   background-image: linear-gradient(to top, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.5));
   -webkit-transform: translateZ(0);
-  transform: translateZ(0);
+          transform: translateZ(0);
 }
 .c-cascade-indicator {
   border: #d0d0d0 solid;
@@ -118,38 +118,58 @@
 .cascademask-enter {
   opacity: 0.1;
 }
-.cascademask-enter.cascademask-enter-active {
+.cascademask-enter-active {
   opacity: 1;
   -webkit-transition: opacity 300ms ease-out;
   transition: opacity 300ms ease-out;
 }
-.cascademask-leave {
+.cascademask-appear {
+  opacity: 0.1;
+}
+.cascademask-appear-active {
+  opacity: 1;
+  -webkit-transition: opacity 300ms ease-out;
+  transition: opacity 300ms ease-out;
+}
+.cascademask-exit {
   opacity: 1;
 }
-.cascademask-leave.cascademask-leave-active {
+.cascademask-exit-active {
   opacity: 0.1;
   -webkit-transition: opacity 300ms ease-out;
   transition: opacity 300ms ease-out;
 }
 .cascadecont-enter {
   -webkit-transform: translate3d(0, 100%, 0);
-  transform: translate3d(0, 100%, 0);
+          transform: translate3d(0, 100%, 0);
 }
-.cascadecont-enter.cascadecont-enter-active {
+.cascadecont-enter-active {
   -webkit-transform: translate3d(0, 0, 0);
-  transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
   -webkit-transition: -webkit-transform 300ms ease-out;
   transition: -webkit-transform 300ms ease-out;
   transition: transform 300ms ease-out;
   transition: transform 300ms ease-out, -webkit-transform 300ms ease-out;
 }
-.cascadecont-leave {
-  -webkit-transform: translate3d(0, 0, 0);
-  transform: translate3d(0, 0, 0);
-}
-.cascadecont-leave.cascadecont-leave-active {
+.cascadecont-appear {
   -webkit-transform: translate3d(0, 100%, 0);
-  transform: translate3d(0, 100%, 0);
+          transform: translate3d(0, 100%, 0);
+}
+.cascadecont-appear-active {
+  -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+  -webkit-transition: -webkit-transform 300ms ease-out;
+  transition: -webkit-transform 300ms ease-out;
+  transition: transform 300ms ease-out;
+  transition: transform 300ms ease-out, -webkit-transform 300ms ease-out;
+}
+.cascadecont-exit {
+  -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+}
+.cascadecont-exit-active {
+  -webkit-transform: translate3d(0, 100%, 0);
+          transform: translate3d(0, 100%, 0);
   -webkit-transition: -webkit-transform 300ms ease-out;
   transition: -webkit-transform 300ms ease-out;
   transition: transform 300ms ease-out;

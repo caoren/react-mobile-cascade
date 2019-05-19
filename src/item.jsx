@@ -1,15 +1,16 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
+
 class SelectItem extends Component{
     constructor(props){
         super(props);
     }
     render(){
-        let {data,textKey} = this.props;
+        const { data, textKey } = this.props;
         return (
             <ul className="c-cascade-ul">
                 {
-                    data.map(function(item,n){
+                    data.map((item,n) => {
                         return (<li key={n}>{item[textKey]}</li>);
                     })
                 }

@@ -8,9 +8,9 @@ function extend(target){
     if(typeof target !== 'object'){
         throw new TypeError('Cannot convert undefined or null to object');
     }
-    let len = arguments.length;
-    for(let index = 1;index < len;index++){
-        let source = arguments[index];
+    const len = arguments.length;
+    for (let index = 1; index < len; index++) {
+        const source = arguments[index];
         if(source != null){
             for(let key in source){
                 if(Object.prototype.hasOwnProperty.call(source,key)){
@@ -30,29 +30,36 @@ class SelectScroll extends React.Component{
         this.isFirst = true;
     }
     scrollEnd(iScrollInstance){
-        let {onSelected,index} = this.props;
-        let y = iScrollInstance.y;
-        let spare = y % ITEMHEIGHT;
+        const { onSelected, index } = this.props;
+        const y = iScrollInstance.y;
+        const spare = y % ITEMHEIGHT;
         let scrollY = y;
         if(spare != 0){
             scrollY = Math.abs(spare) > HALFITEMHEIGHT ? (y - spare - ITEMHEIGHT) : (y - spare);
-            iScrollInstance.scrollTo(0,scrollY,100);
+            iScrollInstance.scrollTo(0, scrollY, 100);
         }
-        let cur = Math.abs(Math.round(scrollY/ITEMHEIGHT));
+        const cur = Math.abs(Math.round(scrollY/ITEMHEIGHT));
         onSelected && onSelected(cur,index);
     }
     componentDidUpdate(){
-        let {selectedIndex} = this.props;
-        let startY = -(selectedIndex) * ITEMHEIGHT;
-        this.refs.iscroll.withIScroll(true,function(iScroll){
-            //console.log(iScroll,startY);
-            iScroll.scrollTo(0,startY);
+        const { selectedIndex } = this.props;
+        const startY = -(selectedIndex) * ITEMHEIGHT;
+        this.refs.iscroll.withIScroll(true, (iScroll) => {
+            if (iScroll && startY !== 0) {
+                iScroll.scrollTo(0, startY);
+            }
         });
     }
     render(){
-        let {data,index,options,selectedIndex,textKey} = this.props;
-        let coptions = extend({},options);
-        if(this.isFirst){
+        const {
+            data,
+            index,
+            options,
+            selectedIndex,
+            textKey
+        } = this.props;
+        const coptions = extend({}, options);
+        if (this.isFirst) {
             coptions.startY = -(selectedIndex) * ITEMHEIGHT;
             delete this.isFirst;
         }
