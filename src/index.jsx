@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import CSSTransition from 'react-transition-group/CSSTransition';
 import SelectScroll from './scroll';
 //polyfill
 if(typeof Array.prototype.findIndex === 'undefined'){
@@ -12,10 +12,10 @@ if(typeof Array.prototype.findIndex === 'undefined'){
             if(typeof callback !== 'function') {
                 throw new TypeError('callback must be a function');
             }
-            let list = this;
-            let len = list.length;
-            let thisArg = arguments[1];
-            for(let i = 0;i < len;i++){
+            const list = this;
+            const len = list.length;
+            const thisArg = arguments[1];
+            for(let i = 0; i < len; i++){
                 if(callback.call(thisArg,list[i],i,list)){
                     return i;
                 }
@@ -34,18 +34,23 @@ const IscrollOption = {
     disableTouch : false,
     disableMouse : true
 }
-const EMPTY = ['','',''];
+const EMPTY = ['', '', ''];
 function analysisData(obj){
-    let {data,column,scrollCheckedKey,scrollChildKey} = obj;
-    return function(indexs){//根据选中的位置输出对应的子级数据
+    const {
+        data,
+        column,
+        scrollCheckedKey,
+        scrollChildKey
+    } = obj;
+    return (indexs) => { // 根据选中的位置输出对应的子级数据
         let list = data;
-        let arr = [];
-        let selectArr = [];
+        const arr = [];
+        const selectArr = [];
         let i = 0;
         while(i < column){
             let sel;
             if(typeof indexs === 'undefined'){
-                sel = list.findIndex(function(item){return item[scrollCheckedKey]});
+                sel = list.findIndex((item) => item[scrollCheckedKey]);
                 sel = sel > -1 ? sel : 0;
                 selectArr.push(sel);
             }
@@ -64,10 +69,10 @@ function analysisData(obj){
     }
 }
 class Cascade extends Component{
-    constructor(props){
+    constructor(props) {
         super(props);
         this.transformData = analysisData(props);
-        let initData = this.transformData();
+        const initData = this.transformData();
         this.state = {
             show : false,
             selecteIndexs : initData.sels,
@@ -78,10 +83,10 @@ class Cascade extends Component{
         this.change = this.change.bind(this);
     }
     //注:改变的位置，该位置后的选中都重置
-    change(cur,index){
-        let {selecteIndexs} = this.state;
-        let {column} = this.props;
-        if(cur == selecteIndexs[index]){
+    change(cur, index) {
+        const { selecteIndexs } = this.state;
+        const { column } = this.props;
+        if (cur == selecteIndexs[index]) {
             return;
         }
         selecteIndexs[index] = cur;
@@ -91,80 +96,79 @@ class Cascade extends Component{
             selecteIndexs[i] = 0;
         }
         //console.log(cur,index,selecteIndexs);
-        let sData = this.transformData(selecteIndexs);
+        const sData = this.transformData(selecteIndexs);
         this.setState({
             selecteIndexs : selecteIndexs,
             selecteItems : sData.items
         });
     }
-    show(){
+    show() {
         this.setState({
             show : true
         });
     }
     //是否触发onCancel
-    cancel(fire = true){
+    cancel(fire = true) {
         if(fire){
-            let {onCancel} = this.props;
+            const { onCancel } = this.props;
             onCancel && onCancel();
         }
         this.setState({
             show : false
         });
     }
-    fetchValue(){
-        let {column} = this.props;
-        let {selecteIndexs,selecteItems} = this.state;
-        let result = [];
-        for(let i=0;i<column;i++){
+    fetchValue() {
+        const { column } = this.props;
+        const { selecteIndexs, selecteItems } = this.state;
+        const result = [];
+        for(let i = 0; i < column; i++){
             result.push(selecteItems[i][selecteIndexs[i] + 3]);
         }
         return result;
     }
-    componentDidMount(){
-        let {onDone,immediateDone} = this.props;
+    componentDidMount() {
+        const { onDone, immediateDone } = this.props;
         immediateDone && onDone && onDone(this.fetchValue());
     }
-    save(){
-        let {onDone} = this.props;
+    save() {
+        const {onDone} = this.props;
         onDone && onDone(this.fetchValue());
         this.cancel(false);
     }
-    render(){
-        let self = this;
-        let {show} = self.state;
-        let {title,data,scrollTextKey} = self.props;
-        let SelectNode;
-        let MaskNode;
-        if(show){
-            MaskNode = (
-                <div className="c-cascade-mask" onClick={self.cancel}></div>
-            );
-            let {selecteItems,selecteIndexs} = self.state;
-            let columnNode = selecteItems.map(function(item,n){
-                return (<SelectScroll selectedIndex={selecteIndexs[n]} data={item} onSelected={self.change} textKey={scrollTextKey} key={n} index={n} options={IscrollOption} />)
-            });
-            SelectNode = (
-                <div className="c-cascade-select">
-                    <div className="c-cascade-opa">
-                        <div className="c-cascade-bton" onClick={self.cancel}>取消</div>
-                        <div className="c-cascade-title">{title}</div>
-                        <div className="c-cascade-bton" onClick={self.save}>确定</div>
-                    </div>
-                    <div className="c-cascade-cont">
-                        {columnNode}
-                    </div>
+    render() {
+        const { show } = this.state;
+        const { title, data, scrollTextKey } = this.props;
+        const { selecteItems, selecteIndexs } = this.state;
+        const columnNode = selecteItems.map((item, n) => (
+            <SelectScroll
+                selectedIndex={selecteIndexs[n]}
+                data={item}
+                onSelected={this.change}
+                textKey={scrollTextKey}
+                key={`casd_${n}`}
+                index={n}
+                options={IscrollOption} />
+        ));
+        const SelectNode = (
+            <div className="c-cascade-select">
+                <div className="c-cascade-opa">
+                    <div className="c-cascade-bton" onClick={this.cancel}>取消</div>
+                    <div className="c-cascade-title">{title}</div>
+                    <div className="c-cascade-bton" onClick={this.save}>确定</div>
                 </div>
-            );
-        }
+                <div className="c-cascade-cont">
+                    {columnNode}
+                </div>
+            </div>
+        );
         return (
             <div>
-                <ReactCSSTransitionGroup component="div" transitionName="cascademask" transitionEnterTimeout={300}  transitionLeaveTimeout={300}>
-                    {MaskNode}
-                </ReactCSSTransitionGroup>
-                <ReactCSSTransitionGroup component="div" transitionName="cascadecont" transitionEnterTimeout={300}  transitionLeaveTimeout={300}>
+                <CSSTransition in={show} classNames="cascademask" timeout={300} mountOnEnter={true} unmountOnExit={true}>
+                    <div className="c-cascade-mask" onClick={this.cancel}></div>
+                </CSSTransition>
+                <CSSTransition in={show} classNames="cascadecont" timeout={300} mountOnEnter={true} unmountOnExit={true}>
                     {SelectNode}
-                </ReactCSSTransitionGroup>
+                </CSSTransition>
             </div>
         )
     }

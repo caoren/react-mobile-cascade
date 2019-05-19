@@ -4,42 +4,51 @@ var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var isDeploy = process.env.NODE_ENV === 'production';
 var config = {
     entry : {
-        test : isDeploy ? path.resolve(__dirname,'test.jsx') : [
-                'webpack/hot/dev-server',
-                'webpack-dev-server/client?http://localhost:7909',
-                path.resolve(__dirname,'test.jsx')
-            ]
+        test : path.resolve(__dirname,'test.jsx')
     },
     output : {
         path : path.resolve(__dirname, '../demo'),
         filename : '[name].js'
     },
     module : {
-        loaders : [{
-            test : /\.jsx?$/,
-            exclude: /(node_modules|bower_components)/,
-            loader: 'babel',
-            query: {
-                presets: ['react', 'es2015']
+        rules: [
+            {
+                test: /\.(js|jsx)?$/,
+                exclude: /node_modules/,
+                use: [{
+                    loader: 'babel-loader'
+                }]
+            },
+            {
+                test: /\.(css|less)?$/,
+                use: ExtractTextPlugin.extract({
+                    fallback: 'style-loader',
+                    use: [
+                        {
+                            loader: 'css-loader'
+                        },
+                        {
+                            loader: 'postcss-loader',
+                            options: {
+                                plugins: [
+                                    require('autoprefixer')({
+                                        browsers: ['IOS >= 7.0', 'Android >= 4.0']
+                                    })
+                                ]
+                            }
+                        },
+                        {
+                            loader: 'less-loader'
+                        }
+                    ]
+                })
             }
-        },
-        {
-            test: /\.(css|less)$/,
-            loader: ExtractTextPlugin.extract('style', '!css!less!postcss')
-        }]
+        ]
     },
     resolve: {
-        extensions: ['','.jsx','.js']
+        extensions: ['.jsx', '.js']
     },
-    devtool: isDeploy ? false : 'eval-source-map',
-    jshint : {
-        "esnext" : true
-    },
-    postcss : function(){
-        return [require('autoprefixer')({
-            browsers:['IOS >= 6.0', 'Android >= 4.0']
-        }), require('precss')];
-    }
+    devtool: isDeploy ? false : 'source-map'
 }
 if(isDeploy){
     config.plugins = [
@@ -54,14 +63,13 @@ if(isDeploy){
                warnings: false
            }
         }),
-        new webpack.optimize.DedupePlugin(),
-        new webpack.optimize.OccurenceOrderPlugin()
+        new webpack.NoEmitOnErrorsPlugin(),
     ];
 }
 else{
     config.plugins = [
         new ExtractTextPlugin("[name].css")
-    ] 
+    ];
 }
 
 module.exports = config;
