@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import CSSTransition from 'react-transition-group/CSSTransition';
 import SelectScroll from './scroll';
 //polyfill
 if(typeof Array.prototype.findIndex === 'undefined'){
@@ -135,11 +135,7 @@ class Cascade extends Component{
         let {show} = self.state;
         let {title,data,scrollTextKey} = self.props;
         let SelectNode;
-        let MaskNode;
         if(show){
-            MaskNode = (
-                <div className="c-cascade-mask" onClick={self.cancel}></div>
-            );
             let {selecteItems,selecteIndexs} = self.state;
             let columnNode = selecteItems.map(function(item,n){
                 return (<SelectScroll selectedIndex={selecteIndexs[n]} data={item} onSelected={self.change} textKey={scrollTextKey} key={n} index={n} options={IscrollOption} />)
@@ -159,12 +155,12 @@ class Cascade extends Component{
         }
         return (
             <div>
-                <ReactCSSTransitionGroup component="div" transitionName="cascademask" transitionEnterTimeout={300}  transitionLeaveTimeout={300}>
-                    {MaskNode}
-                </ReactCSSTransitionGroup>
-                <ReactCSSTransitionGroup component="div" transitionName="cascadecont" transitionEnterTimeout={300}  transitionLeaveTimeout={300}>
+                <CSSTransition in={show} classNames="cascademask" timeout={300} mountOnEnter={true} unmountOnExit={true}>
+                    <div className="c-cascade-mask" onClick={self.cancel}></div>
+                </CSSTransition>
+                <CSSTransition in={show} classNames="cascadecont" timeout={300} mountOnEnter={true} unmountOnExit={true}>
                     {SelectNode}
-                </ReactCSSTransitionGroup>
+                </CSSTransition>
             </div>
         )
     }

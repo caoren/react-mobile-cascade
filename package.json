@@ -1,6 +1,6 @@
 {
   "name": "react-mobile-cascade",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "homepage": "https://github.com/caoren/react-mobile-cascade",
   "keywords": [
     "react",
@@ -41,11 +41,17 @@
     "react-iscroll": "^1.0.2",
     "style-loader": "^0.13.1",
     "webpack": "1.13.0",
-    "webpack-dev-server": "1.14.1"
+    "webpack-dev-server": "3.1.11"
   },
   "peerDependencies": {
-    "react": ">=0.14.0",
-    "react-dom": ">=0.14.0"
+    "react": ">=15.0.1",
+    "react-dom": ">=15.0.1",
+    "prop-types": ">= 15.0.1",
+    "react-transition-group": ">=2.0.0"
+  },
+  "dependencies": {
+    "iscroll": "^5.2.0",
+    "react-iscroll": "^2.0.3"
   },
   "scripts": {
     "main": "babel src/ --out-dir lib/",
